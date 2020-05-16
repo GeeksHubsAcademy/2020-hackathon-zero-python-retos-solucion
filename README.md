@@ -1,415 +1,245 @@
-# 2020-hackathon-python-retos
+# 2020-hackathon-python-retos-soluciones
 
 <p align="center">
     <img src="https://github.com/GeeksHubsAcademy/2020-geekshubs-media/blob/master/image/logo.png" >	
 </p>
 
 
+<p align="center">
+    <img src="https://github.com/GeeksHubsAcademy/2020-geekshubs-media/blob/master/image/2020-hackathon.png" >	
+</p>
+
+
+Kata 1
+```
+from random import randint
+
+options = ["Piedra", "Papel", "Tijeras"]
+
+def quienGana(player, ai):
+    player = player.lower()
+    ai = ai.lower()
+    
+    if player == ai:
+        return 'Empate!'
+    elif player == "piedra" and ai == "tijeras":
+        return "Ganaste!"
+    elif player == "papel" and ai == "piedra":
+        return "Ganaste!"
+    elif player == "tijeras" and ai == "papel":
+        return "Ganaste!"
+
+    return "Perdiste!"
+        
+def Game():
+    player = input("¿Piedra, Papel o Tijeras?")
+    print("Elegiste: " + player)
+
+    ai = options[randint(0,2)]
+    print("AI eligio: " + ai)
+
+    winner = quienGana(player, ai)
+
+    print("Por lo tanto, haz: "  + winner )
 ```
 
-El modus operandi de trabajo es el siguiente:
-
-Debes 'Forkear' el proyecto a tu cuenta de Github.
-
-Dos posibilidades de desarrollo :
-    - Puedes hacer PR's ilimitadas e ir validando poco a poco la solución contra nuestro respositorio con CI.
-    - Puedes trabajar en local y subir la solución a tu 'Fork', luego nos haces una PR a nuestro repositorio.
-
-Cuando se envíe la PR, indica la Kata actual en el nombre de la PR.
-También puedes añadir un comentario para dar cualquier tipo de feedback.
-
-Una vez envíes la primera PR, todas la siguientes se añaden consecutivamente en la misma.
-Recuerda que nosotros no vamos aceptarla hasta que todos los Tests esten en verde.
-
-
-En caso de duda, revisa en el apartado de 'Referencias'.
-Hay una guía que donde explica todos los pasos.
-
-No se aceptarán PR's validas que añadan cualquier tipo de carpeta con assets que no sean los que vienen en el repo.
-No se aceptarán PR's validas que cambien el comportamiento de la estructura del proyecto.
-
-En caso de empate, atenderemos al orden de cola de ejecución del cliente de la integración continua.
-
-
-
-
-
-Este repositorio cumple con una solución 'Python' que se abre con 'Visual Studio Code'.
-Se han añadido los ficheros raiz del proyecto para su fácil uso en local.
-	- .vscode
-	- main.code-workspace
-	
-Una vez forkeado, puedes clonarlo/descargarlo en tu local.
-Abrimos Visual Studio Code
-    - File
-    - Open Workspace
-
-Seleccionar fichero
-    - main.code-workspace
-
-
-A continuación se describe la estructura de la paquetería :
-
-Carpeta 'src'
-    - Contiene los diferentes retos.
-    - En cada carpeta se presenta un fichero con métodos vacíos que hay que implementar.
-
-Carpeta 'test'
-    - Contiene la suite de test que ejecuta el código de los métodos de la carpeta 'src'.
-
-Fichero .travis.yml
-    - Define una configuración con pseudo-código que permite lanzar los test en un
-      entorno pre-configurado con Integración Continua o también llamado 'CI'.
-    
-Fichero setup.py
-    - Fichero de configuración.
-
-
-Para instalar Python en Visual Studio Code
-    - Control+Shift+X
-    - En el buscador ponemos el id 'ms-python.python', a la derecha del icono - Install
-
-
-
-Definimos los siguientes retos:
-
-Reto 1 - Piedra, Papel o Tijera ?
-
-Se atiente a un pequeño juego donde el Player-1 escoge una acción [Piedra - Papel - Tijera].
-Una pequeña IA contesta al player-1 con una elección aleatoria.
-Tras la elección de ambos, se dicta el resultado del Player-1.
-Ganador, Perdedor o Empate ???
-
-Test Suite
-
-def test_no_sensible_minusculas():
-    assert(quienGana('Piedra', 'Papel') == 'Perdiste!')
-
-def test_piedra_vs_piedra():
-	assert(quienGana('Piedra', 'Piedra') == 'Empate!')
-
-def test_papel_vs_papel():
-	assert(quienGana('Papel', 'Papel') == 'Empate!')
-
-def test_tijeras_vs_tijeras():
-	assert(quienGana('Tijeras', 'Tijeras') == 'Empate!')
-
-def test_piedra_vs_papel():
-	assert(quienGana('Piedra', 'Papel') == 'Perdiste!')
-
-def test_papel_vs_tijeras():
-	assert(quienGana('Papel', 'Tijeras') == 'Perdiste!')
-
-def test_tijeras_vs_piedra():
-	assert(quienGana('Tijeras', 'Piedra') == 'Perdiste!')
-
-def test_piedra_vs_tijeras():
-	assert(quienGana('Piedra', 'Tijeras') == 'Ganaste!')
-
-def test_papel_vs_piedra():
-	assert(quienGana('Papel', 'Piedra') == 'Ganaste!')
-
-def test_tijeras_vs_papel():
-	assert(quienGana('Tijeras', 'Papel') == 'Ganaste!')
-
-
-Dependencias en local por terminal
- - pip install -e .
-
-
-
-
-Reto 2 - Random Password Generator
-
-Pequeña aplicación que permite generar aleatoriamente un token 'cifrado'.
-Nuestro James Bone de l'horta necesita tu ayuda!!!
-
-
-Test Suite
-
-def test_longitud_15():
-	assert(len(RandomPasswordGenerator(15)) == 15)
-
-def test_longitud_10():
-	assert(len(RandomPasswordGenerator(10)) == 10)
-
-def test_longitud_8():
-	assert(len(RandomPasswordGenerator(8)) == 8)
-
-def test_contraseña_contiene_letras():
-	assert(chr in RandomPasswordGenerator(15) for chr in string.ascii_letters)
-
-def test_contraseña_contiene_numeros():
-	assert(chr in RandomPasswordGenerator(15) for chr in string.digits)
-
-def test_contraseña_contiene_caracteres_especiales():
-	assert(chr in RandomPasswordGenerator(15) for chr in string.punctuation)
-    
-def test_contraseña_contiene_letras():
-	characters = string.ascii_letters + string.digits + string.punctuation
-	assert(chr in RandomPasswordGenerator(15) for chr in characters)
-
-def test_contraseña_compleja():
-	characters = string.ascii_letters + string.digits + string.punctuation
-	assert(chr in RandomPasswordGenerator(15) for chr in characters)
-
-Dependencias en local por terminal
- - pip install -e .
-
-
-
-
-Reto 3 - Tu primer Bot
-
-A través de una mensajería bidireccional, se intercambian mensajes con un bot de manera estática.
-Para ello se define un patrón comander que mapea lo mensajes [start - help - mayus].
-A cada acción, tenemos una respuesta.
-
-
-Test Suite
-
-def test_command_start():
-    update = Update()
-    assert(start(update, '') == 'Hola, Geeks!')
-
-def test_command_help():
-    update = Update()
-    assert(help(update, '') == 'Ayudame!')
-
-def test_command_mayus():
-    update = Update()
-    context = Context()
-    context.args = ['hola']
-
-    assert(mayus(update, context) == 'HOLA')
-
-def test_command_alreves():
-    update = Update()
-    update.message.text = 'hola'
-
-    assert(alreves(update, '') == 'aloh')
-
-
-Dependencias en local por terminal
- - pip install -e .
- - pip install python-telegram-bot --upgrade
-
- Desde Visual Studio Code
- - https://pypi.org/project/python-telegram-bot/
-
-
-
-Reto 4 - Snake
-
-Juego de los 90 que todo móvil Nokia incorporaba de serie ^_^.
-Un pequeño cubo se mueve por la pantalla en las siguientes direcciones :
-    - UP
-    - DOWN
-    - LEFT
-    - RIGHT
-Éste debe de 'colisionar' con los elementos aleatorios (frutas) para ir creciendo.
-Si la serpiente colisiona con la comida, incrementa el score en 1.
-Si la serpiente colisiona con ella misma muere.
-Fíjate en los límetes de la pantalla, si sales fuera, mueres.
-
-Test Suite
-
-def test_dead_in_top():
-    snake = Snake()
-    game = Game()
-
-    snake.position = [512, 50]
-
-    game.dead(snake)
-    assert(game.run == False)
-
-def test_dead_in_bot():
-    snake = Snake()
-    game = Game()
-
-    snake.position = [0, 50]
-
-    game.dead(snake)
-    assert(game.run == False)
-
-def test_dead_in_left():
-    snake = Snake()
-    game = Game()
-
-    snake.position = [200, 512]
-
-    game.dead(snake)
-    assert(game.run == False)
-
-def test_dead_in_right():
-    snake = Snake()
-    game = Game()
-
-    snake.position = [200, 0]
-
-    game.dead(snake)
-    assert(game.run == False)
-
-def test_live():
-    snake = Snake()
-    game = Game()
-
-    snake.position = [100, 50]
-
-    game.dead(snake)
-    assert(game.run == True)
-
-def test_score_plus():
-    snake = Snake()
-    game = Game()
-
-    snake.position = game.food_pos
-
-    game.eat(snake)
-    assert(game.score == 1)
-
-def test_food_random():
-    game = Game()
-
-    food1 = game.food_pos
-    game.food_spawn()
-    food2 = game.food_pos
-
-    assert(food1 != food2)
-
-def test_controller_snake_UP():
-    snake = Snake()
-    class event:
-        type = 0
-        key = 2
-    
-    class pygame:
-        KEYDOWN = 0
-        K_RIGHT = 0
-        K_LEFT = 1
-        K_UP = 2
-        K_DOWN = 3
-
-    snake.controller(event, pygame)
-
-    assert(snake.change == "UP")
-
-def test_controller_snake_DOWN():
-    snake = Snake()
-    class event:
-        type = 0
-        key = 3
-    
-    class pygame:
-        KEYDOWN = 0
-        K_RIGHT = 0
-        K_LEFT = 1
-        K_UP = 2
-        K_DOWN = 3
-
-    snake.controller(event, pygame)
-
-    assert(snake.change == "DOWN")
-
-def test_controller_snake_LEFT():
-    snake = Snake()
-    class event:
-        type = 0
-        key = 1
-    
-    class pygame:
-        KEYDOWN = 0
-        K_RIGHT = 0
-        K_LEFT = 1
-        K_UP = 2
-        K_DOWN = 3
-
-    snake.controller(event, pygame)
-
-    assert(snake.change == "LEFT")
-
-def test_controller_snake_RIGHT():
-    snake = Snake()
-    class event:
-        type = 0
-        key = 0
-    
-    class pygame:
-        KEYDOWN = 0
-        K_RIGHT = 0
-        K_LEFT = 1
-        K_UP = 2
-        K_DOWN = 3
-
-    snake.controller(event, pygame)
-
-    assert(snake.change == "RIGHT")
-
-def test_direction_snake_UP():
-    snake = Snake()
-
-    position_o = [100, 50]
-    snake.change = "UP"
-    snake.direction = "RIGHT"
-
-    snake.changeDirection()
-
-    assert(snake.direction == "UP")
-    assert(snake.position[1] == (position_o[1] - 10))
-
-    del snake
-
-def test_direction_snake_DOWN():
-    snake = Snake()
-
-    position_o = [100, 40]
-    snake.change = "DOWN"
-    snake.direction = "RIGHT"
-
-    snake.changeDirection()
-
-    assert(snake.direction == "DOWN")
-    assert(snake.position[1] == (position_o[1] + 10))
-
-    del snake
-
-def test_direction_snake_LEFT():
-    snake = Snake()
-
-    position_o = [100, 50]
-    snake.change = "LEFT"
-    snake.direction = "UP"
-
-    snake.changeDirection()
-
-    assert(snake.direction == "LEFT")
-    assert(snake.position[0] == (position_o[0] - 10))
-
-def test_direction_snake_RIGHT():
-    snake = Snake()
-
-    position_o = [90, 50]
-    snake.change = "RIGHT"
-    snake.direction = "UP"
-    snake.changeDirection()
-
-    assert(snake.direction == "RIGHT")
-    assert(snake.position[0] == (position_o[0] + 10))
-
-
-Dependencias en local por terminal
- - pip install -e .
- - git submodule update --init --recursive
- - pip install pygame
-
- Desde Visual Studio Code
- - https://pypi.org/project/pygame/
-
-
-
-Empezamos GEEKS!!!!!!!!
-
+kata 2
 ```
+#!/usr/bin/python
+
+import random
+import string
+
+def RandomPasswordGenerator(passLen=10):
+    characters = string.ascii_letters + string.digits + string.punctuation
+    password = ''
+
+    for i in range(passLen):
+        password += random.choice(characters)
+
+    return password
+```
+
+Kata 3
+```
+import logging
+
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+
+# Activar logging
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    level=logging.INFO)
+
+logger = logging.getLogger(__name__)
+
+
+# Definimos algunas funciones para los comandos. Estos generalmente toman los dos argumentos update y context
+def start(update, context):
+    """Envia un mensaje cuando se emita el comando /start."""
+    return update.message.reply_text('Hola, Geeks!')
+
+
+def help(update, context):
+    """Envia un mensaje cuando se emita el comando /help."""
+    return update.message.reply_text('Ayudame!')
+
+def mayus(update, context):
+        palabra = context.args[0].upper()
+        return update.message.reply_text(palabra)
+
+def alreves(update, context):
+    """Repite el mensaje del usuario."""
+    texto = update.message.text[::-1]
+    return update.message.reply_text(texto)
+
+def error(update, context):
+    """Envia los errores por consola"""
+    logger.warning('Update "%s" caused error "%s"', update, context.error)
+
+def main():
+    """Inicio del Bot"""
+
+    #Colocamos el Token creado por FatherBot
+    updater = Updater("****AQUí LA KEY****", use_context=True)
+
+    # Es el Registro de Comandos
+    dp = updater.dispatcher
+
+    # Añadimos a la lista de Registro todos los comandos con su función
+    dp.add_handler(CommandHandler("start", start))
+    dp.add_handler(CommandHandler("help", help))
+    dp.add_handler(CommandHandler("mayus", mayus))
+
+    # Este comando es un Trigger.
+    dp.add_handler(MessageHandler(Filters.text, alreves))
+
+
+    # Y este espera al error
+    dp.add_error_handler(error)
+
+    # Lanzamos el Bot
+    updater.start_polling()
+
+    updater.idle()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+kata4
+```
+import pygame, sys, time, random
+from pygame.locals import *
+
+#pygame.init()
+#play_surface = pygame.display.set_mode((500, 500))
+#fps = pygame.time.Clock()
+
+class Snake():
+    position = [100,50]
+    body = [[100,50], [90,50],[80,50]]
+    direction = "RIGHT"
+    change = direction
+
+    def controller(self, event, pygame):
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RIGHT:
+                self.change = "RIGHT"
+            if event.key == pygame.K_LEFT:
+                self.change = "LEFT"
+            if event.key == pygame.K_UP:
+                self.change = "UP"
+            if event.key == pygame.K_DOWN:
+                self.change = "DOWN"
+
+    def changeDirection(self):
+        if self.change == "RIGHT" and self.direction != "LEFT":
+            self.direction = "RIGHT"
+        if self.change == "LEFT" and self.direction != "RIGHT":
+            self.direction = "LEFT"
+        if self.change == "UP" and self.direction != "DOWN":
+            self.direction = "UP"
+        if self.change == "DOWN" and self.direction != "UP":
+            self.direction = "DOWN"
+
+        if self.direction == "RIGHT":
+            self.position[0] += 10
+        if self.direction == "LEFT":
+            self.position[0] -= 10
+        if self.direction == "UP":
+            self.position[1] -= 10
+        if self.direction == "DOWN":
+            self.position[1] += 10
+
+        self.body.insert(0, list(self.position))
+
+class Game():
+    run = True
+    food_pos = 0
+    score = 0
+
+    def __init__(self):
+        self.food_spawn()
+
+    def exit(self, event, pygame):
+        if event.type == pygame.QUIT:
+            self.run = False
+
+    def food_spawn(self):
+        self.food_pos = [random.randint(0,49)*10, random.randint(0,49)*10]
+
+    def eat(self, snake):
+        if snake.position == self.food_pos:
+            self.food_spawn()
+            self.score += 1
+        else:
+            snake.body.pop()
+
+    def dead(self, snake):
+        if snake.position[0] >= 500 or snake.position[0] <=0:
+            print(f"Game Over! Score: {self.score})")
+            self.run = False
+            
+        if snake.position[1] >= 500 or snake.position[1] <=0:
+            print(f"Game Over! Score: {self.score})")
+            self.run = False
+
+        if snake.position in snake.body[1:]:
+            print(f"Game Over! Score: {self.score})")
+            self.run = False
+
+def main():
+    snake = Snake()
+    game = Game()
+
+    while game.run:
+        for event in pygame.event.get():
+            game.exit(event, pygame)
+            snake.controller(event, pygame)
+
+        snake.changeDirection()
+
+        game.eat(snake)
+
+        # Dibujar Snake
+        play_surface.fill((0,0,0))
+        for pos in snake.body:
+            pygame.draw.rect(play_surface, (200,200,200), pygame.Rect(pos[0], pos[1], 10, 10))
+
+        pygame.draw.rect(play_surface, (255,160,60), pygame.Rect(game.food_pos[0], game.food_pos[1], 10, 10))
+
+        game.dead(snake)
+
+        pygame.display.flip()
+        fps.tick(10)
+
+#main()
+#pygame.quit()
+```
+
+[](https://media.giphy.com/media/eYilisUwipOEM/200w_d.gif)
+
 
 ## Referencias
 
@@ -418,3 +248,7 @@ Empezamos GEEKS!!!!!!!!
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [Telegram-Bot](https://pypi.org/project/python-telegram-bot/)
 * [Pygame](https://pypi.org/project/pygame/)
+* [Fundamentos Python](https://github.com/GeeksHubsAcademy/FundamentosPython)
+* [Telegram Bot](https://github.com/GeeksHubsAcademy/TelegramBot)
+* [Pong - PyGame](https://github.com/GeeksHubsAcademy/PongPygame)
+* [Principal](https://github.com/GeeksHubsAcademy/2020-hackathon-zero-python-retos-main)
