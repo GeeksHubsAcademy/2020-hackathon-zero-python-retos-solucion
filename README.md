@@ -243,7 +243,7 @@ def main():
 
 ![](https://github.com/GeeksHubsAcademy/2020-hackathon-zero-python-retos-solucion/blob/master/epic.gif)
 
-# Test Passed - Oraculo
+# Test Passed - Oráculo
 
 ![](https://github.com/GeeksHubsAcademy/2020-hackathon-zero-python-retos-solucion/blob/master/test.png)
 ![](https://github.com/GeeksHubsAcademy/2020-hackathon-zero-python-retos-solucion/blob/master/Oraculo.png)
