@@ -238,7 +238,7 @@ def main():
 #pygame.quit()
 ```
 
-[](https://media.giphy.com/media/eYilisUwipOEM/200w_d.gif)
+![](https://raw.githubusercontent.com/GeeksHubsAcademy/2020-hackathon-zero-python-retos-solucion/master/epic.gif)
 
 
 ## Referencias
