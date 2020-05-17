@@ -9,8 +9,8 @@
     <img src="https://github.com/GeeksHubsAcademy/2020-geekshubs-media/blob/master/image/2020-hackathon.png" >	
 </p>
 
-[![Build Status](https://travis-ci.com/GeeksHubsAcademy/-2020-hackathon-zero-python-retos-soluci-n.svg?branch=master)]()
 [![Build Status](https://travis-ci.com/GeeksHubsAcademy/2020-hackathon-zero-python-retos-solucion.svg?branch=master)](https://travis-ci.com/GeeksHubsAcademy/2020-hackathon-zero-python-retos-solucion)
+
 Kata 1
 ```
 from random import randint
